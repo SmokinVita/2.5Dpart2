@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
     private float _gravity = 9.81f;
     [SerializeField]
     private float _jumpHeight = 15f;
-
     private float _yVelocity;
+
+    private int _coin;
 
     private bool _canDoubleJump;
 
@@ -53,5 +54,11 @@ public class Player : MonoBehaviour
         velocity.y = _yVelocity;
 
         _characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void UpdateCoinAmount()
+    {
+        _coin++;
+        UIManager.Instance.UpdateCoinText(_coin);
     }
 }
