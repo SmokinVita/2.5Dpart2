@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             _yVelocity -= _gravity;
         }
 
-        velocity.y = _yVelocity;
+        velocity.y = _yVelocity;// * Time.deltaTime;
 
         _characterController.Move(velocity * Time.deltaTime);
     }
