@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
 
     private CharacterController _characterController;
+    [SerializeField]
+    private int _lives = 3;
 
     [SerializeField]
     private float _speed = 5f;
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         if (_characterController == null)
             Debug.LogError("Character Controller is NULL!");
+
+        UIManager.Instance.UpdateLivesText(_lives);
     }
 
     // Update is called once per frame
