@@ -22,9 +22,16 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _updateCoin;
+    [SerializeField]
+    private TMP_Text _updateLives;
 
     public void UpdateCoinText(int coinAmount)
     {
         _updateCoin.SetText($"Coins: {coinAmount}");
+    }
+
+    public void UpdateLivesText(int livesAmout)
+    {
+        _updateLives.SetText($"Lives: {livesAmout}");
     }
 }
