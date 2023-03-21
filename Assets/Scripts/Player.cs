@@ -75,8 +75,9 @@ public class Player : MonoBehaviour
         Debug.Log("Player got hurt");
         _lives--;
 
-        _yVelocity = 0;
+        _characterController.enabled = false;
         transform.position = _respawnPoint;
+        StartCoroutine(CharacterControllerRoutine());
 
         if(_lives <= 0)
         {
@@ -84,5 +85,11 @@ public class Player : MonoBehaviour
         }
 
         UIManager.Instance.UpdateLivesText(_lives);
+    }
+
+    IEnumerator CharacterControllerRoutine()
+    {
+        yield return new WaitForSeconds(.5f);
+        _characterController.enabled = true;
     }
 }
