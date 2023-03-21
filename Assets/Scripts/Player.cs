@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     private bool _canDoubleJump;
 
+    private Vector3 _respawnPoint;
+
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
             Debug.LogError("Character Controller is NULL!");
 
         UIManager.Instance.UpdateLivesText(_lives);
+
+        _respawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -64,5 +68,21 @@ public class Player : MonoBehaviour
     {
         _coin++;
         UIManager.Instance.UpdateCoinText(_coin);
+    }
+
+    public void Damage()
+    {
+        Debug.Log("Player got hurt");
+        _lives--;
+
+        _yVelocity = 0;
+        transform.position = _respawnPoint;
+
+        if(_lives <= 0)
+        {
+            GameManager.Instance.RestartScene();
+        }
+
+        UIManager.Instance.UpdateLivesText(_lives);
     }
 }
